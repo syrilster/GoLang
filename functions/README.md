@@ -1,4 +1,4 @@
-#Functions
+# Functions
 * Go variable and function declarations work in reverse order from Java.  
 * The sayHello declaration here begins with the keyword func rather than a return type.  
 * The return type, string in this case, comes at the very end just before the opening curly-brace.  The same is true for function parameters.  Instead of String listener, the parameter declaration is listener string.
