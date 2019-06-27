@@ -8,3 +8,7 @@
 * NO Inheritance. Prefer composition over inheritance to avoid complexity of inheritance.
 * No Method overloading. Its confusing and slows down compilation.
 * Simple Interfaces.
+
+
+# References
+* Microservices in Go: https://medium.com/seek-blog/microservices-in-go-2fc1570f6800
