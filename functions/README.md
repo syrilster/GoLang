@@ -18,3 +18,9 @@ var CurrentTime time.Time
 
 * Lastly, notice the init() function.  Although main() is the primary entry-point for a Go application, init() is a special (optional) function that is automatically called before anything else.  
 * It is typically used to initialize variables, or other setup and validation tasks.  For now, you can think of init() is roughly comparable to a Java constructor, even though in Go the distinction between static and instance methods doesn’t quite apply.
+
+# Multiple Return Types?!?
+* Java methods can take any number of input parameters, but always return no more than ONE return type.  
+* If you need a method to return more than one distinct piece of information, then you would either create a custom type to hold the multiple pieces or else give up and refactor the method to avoid that clutter.
+* One of the surprises with Go functions is that they quite commonly return multiple values in a single call!  
+* Consider the example class funcMultipleReturnTypes which trims whitespace from a string, and returns both the trimmed string and the number of characters removed in the process.
