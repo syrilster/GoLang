@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 )
 
 var maxSize int
@@ -41,5 +42,18 @@ func main() {
 		fmt.Println("Customer profile setup successfully")
 	case orderAmount > 1000 && customerStatus == "Active":
 		fmt.Println("Customer plan activated successfully")
+	}
+
+	//Another important difference is that Go's switch cases need not be constants, and the values involved need not be integers.
+	fmt.Println("Go Runs on ")
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Print("OS X")
+
+	case "linux":
+		fmt.Print("Linux")
+
+	default:
+		fmt.Printf("%s. \n", os)
 	}
 }
