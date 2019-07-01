@@ -8,6 +8,11 @@ type Employee struct {
 
 var employeeMap map[string]Employee
 
+var employeeMapLiteral = map[string]Employee{
+	"Bell Labs": {40, 74},
+	"Google":    {37, 122},
+}
+
 func main() {
 	//The make function returns a map of the given type, initialized and ready for use.
 	employeeMap = make(map[string]Employee)
@@ -15,5 +20,6 @@ func main() {
 	employeeMap["anju"] = Employee{28, 250}
 
 	fmt.Println(employeeMap)
-	fmt.Print(employeeMap["syril"])
+	fmt.Println(employeeMap["syril"])
+	fmt.Println("Employee Literal Map: ", employeeMapLiteral)
 }
