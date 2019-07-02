@@ -32,6 +32,10 @@ func scale(vertex *Vertex, factor float64) {
 func main() {
 	vertex := Vertex{4, 4}
 	fmt.Println("Invoking the method scale on vertex type:")
+	/*
+		For the statement vertex.scale(10), even though vertex is a value and not a pointer, the method with the pointer receiver is called automatically.
+		That is, as a convenience, Go interprets the statement vertex.scale(10) as (&vertex).scale(10) since the scale method has a pointer receiver.
+	*/
 	vertex.scale(10)
 	fmt.Println("Calling the function scale:")
 	scale(&vertex, 10)
