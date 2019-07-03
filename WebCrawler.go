@@ -60,7 +60,7 @@ func main() {
 	urlMap := UrlLookupMap{value: make(map[string]string)}
 	waitGroup.Add(1)
 	go Crawl("https://golang.org/", 4, fetcher, urlMap)
-	defer waitGroup.Done()
+	defer waitGroup.Wait()
 
 	for url := range urlMap.value {
 		body, _ := urlMap.get(url)
