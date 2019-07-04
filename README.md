@@ -11,6 +11,6 @@
 
 
 # References
-* Idiomatic Go https://www.youtube.com/watch?v=yeetIgNeIkc
+* Idiomatic Go Tricks https://www.youtube.com/watch?v=yeetIgNeIkc
 * Microservices in Go: https://medium.com/seek-blog/microservices-in-go-2fc1570f6800
 * https://gobyexample.com/
