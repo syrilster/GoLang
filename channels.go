@@ -23,7 +23,7 @@ func main() {
 	go sum(randArray[:len(randArray)/2], channel)
 	go sum(randArray[len(randArray)/2:], channel)
 
+	// This actually waits until the channel puts in some value.
 	receiverOne, receiverTwo := <-channel, <-channel // receive from channel
 	fmt.Println(receiverOne, receiverTwo, receiverOne+receiverTwo)
-
 }
