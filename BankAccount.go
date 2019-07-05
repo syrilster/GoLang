@@ -56,22 +56,27 @@ func (account *Account) Withdraw(amount int) (bool, error) {
 	return true, nil
 }
 
+func displayError(err error) {
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+}
+
 func main() {
 	fmt.Println("Go Bank Account example")
-	//transactionChannel := make(chan bool)
+	var accountStatus = "Closed"
 	account, err := Open(5000)
+	displayError(err)
+	fmt.Printf("Account 'a' opened with initial balance of %d \n", account.balance)
+	//account.Close()
+	_, err = account.Deposit(200)
 
-	if err != nil {
-		fmt.Println(err.Error())
-	} else {
-		fmt.Printf("Account 'a' opened with initial balance of %d \n", account.balance)
+	displayError(err)
+	_, err = account.Withdraw(4000)
+
+	displayError(err)
+	if account.open {
+		accountStatus = "Open"
 	}
-
-	account.Deposit(200)
-	_, err = account.Withdraw(40000)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	fmt.Println("Current Account Balance is: ", account.Balance())
-
+	fmt.Printf("Current Account Balance is %d and account status is %s", account.Balance(), accountStatus)
 }
