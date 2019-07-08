@@ -42,9 +42,9 @@ func main() {
 
 	for _, i := range []int{7, 42} {
 		if r, e := functionTwo(i); e != nil {
-			fmt.Println("functionTwo failed:", e)
+			fmt.Println("function Two failed:", e)
 		} else {
-			fmt.Println("functionTwo worked:", r)
+			fmt.Println("function Two worked:", r)
 		}
 	}
 }
