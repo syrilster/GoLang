@@ -19,11 +19,11 @@ A type implements an interface by implementing its methods. There is no explicit
 Here the FullTimeEmployee type is implementing the employee interface to display the name
 */
 func (emp FullTimeEmployee) display() {
-	fmt.Println(emp.name)
+	fmt.Println("Full Time Employee: ", emp.name)
 }
 
 func (emp ContractEmployee) display() {
-	fmt.Print(emp.name)
+	fmt.Print("Consultant: ", emp.name)
 }
 
 func main() {
