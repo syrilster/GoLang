@@ -11,6 +11,7 @@ import (
 
 type Article struct {
 	// Export a field by starting it with an uppercase letter. Otherwise it wont be exported
+	Id          string `json:"id"`
 	Title       string `json:"title"`
 	Description string `json:"desc"`
 	Content     string `json:"content"`
@@ -29,19 +30,33 @@ func getAllArticles(w http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(w).Encode(articles)
 }
 
+func getArticleById(w http.ResponseWriter, request *http.Request) {
+	requestParams := mux.Vars(request)
+	key := requestParams["id"]
+	//fmt.Fprintf(w, "Key"+key)
+	for _, article := range articles {
+		if article.Id == key {
+			json.NewEncoder(w).Encode(article)
+			return
+		}
+	}
+	fmt.Fprintf(w, "Article Id is invalid. ID: "+key)
+}
+
 func handleRequests() {
 	// Creates a new instance of mux
 	endpointRouter := mux.NewRouter().StrictSlash(true)
 	endpointRouter.HandleFunc("/", homePage)
 	endpointRouter.HandleFunc("/articles", getAllArticles)
+	endpointRouter.HandleFunc("/articles/{id}", getArticleById)
 	//Pass the newly created router as the second argument
 	log.Fatal(http.ListenAndServe(":8080", endpointRouter))
 }
 
 func main() {
 	articles = []Article{
-		Article{Title: "Sapiens", Description: "Homo Sapiens", Content: "Fantastic book about the human evolution"},
-		Article{"Homo Dues", "Homo Deus", "Fantastic book about Human desctruction !!"},
+		Article{Id: "1", Title: "Sapiens", Description: "Homo Sapiens", Content: "Fantastic book about the human evolution"},
+		Article{"2", "Homo Dues", "Homo Deus", "Fantastic book about Human desctruction !!"},
 	}
 
 	handleRequests()
