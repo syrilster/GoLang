@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 
@@ -43,12 +44,27 @@ func getArticleById(w http.ResponseWriter, request *http.Request) {
 	fmt.Fprintf(w, "Invalid Article Id provided. ID: "+key)
 }
 
+func createArticle(responseWriter http.ResponseWriter, request *http.Request) {
+	reqBody, err := ioutil.ReadAll(request.Body)
+	if err != nil {
+		fmt.Fprintf(responseWriter, "Error during creation")
+	}
+	fmt.Fprintf(responseWriter, "Creating new article.. \n")
+	var article Article
+	json.Unmarshal(reqBody, &article)
+	fmt.Println(article)
+	//Update the articles collection with the latest
+	articles = append(articles, article)
+	json.NewEncoder(responseWriter).Encode(article)
+}
+
 func handleRequests() {
 	// Creates a new instance of mux
 	endpointRouter := mux.NewRouter().StrictSlash(true)
 	endpointRouter.HandleFunc("/", homePage)
 	endpointRouter.HandleFunc("/articles", getAllArticles)
-	endpointRouter.HandleFunc("/articles/{id}", getArticleById)
+	endpointRouter.HandleFunc("/article/{id}", getArticleById)
+	endpointRouter.HandleFunc("/article", createArticle).Methods("POST")
 	//Pass the newly created router as the second argument
 	log.Fatal(http.ListenAndServe(":8080", endpointRouter))
 }
