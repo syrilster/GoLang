@@ -66,6 +66,7 @@ func deleteArticleById(responseWriter http.ResponseWriter, request *http.Request
 		if article.Id == id {
 			articles = append(articles[:index], articles[index+1:]...)
 			fmt.Fprintf(responseWriter, "Article successfully deleted \n")
+			break
 		}
 	}
 }
@@ -92,6 +93,8 @@ func updateArticleById(responseWriter http.ResponseWriter, request *http.Request
 			article.Description = updatedArticle.Description
 			article.Content = updatedArticle.Content
 			articles = append(articles, article)
+			json.NewEncoder(responseWriter).Encode(article)
+			break
 		}
 	}
 }
