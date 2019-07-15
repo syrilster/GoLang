@@ -3,3 +3,6 @@
 * We then take a far more lightweight image for our run stage which includes only what is absolutely needed in order to run a binary executable. This would typically be classed as a production stage or something similar.
 * Build the image using: docker build -t go-multi-stage .
 * Run the above image using: docker run -d -p 8080:8080 go-multi-stage
+
+# References
+* https://tutorialedge.net/golang/go-multi-stage-docker-tutorial/
