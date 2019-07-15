@@ -40,7 +40,7 @@ func getArticleById(w http.ResponseWriter, request *http.Request) {
 			return
 		}
 	}
-	fmt.Fprintf(w, "Article Id is invalid. ID: "+key)
+	fmt.Fprintf(w, "Invalid Article Id provided. ID: "+key)
 }
 
 func handleRequests() {
