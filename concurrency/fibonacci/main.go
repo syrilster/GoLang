@@ -47,7 +47,8 @@ func (c *compute) sequentialFibonacci(count int) {
 func (c *compute) parallelFibonacci(count int) {
 	buffChan := make(chan int, 100)
 	wg := &sync.WaitGroup{}
-	for i := 0; i < 2; i++ {
+	// 4 workers to execute the job
+	for i := 0; i < 4; i++ {
 		wg.Add(1)
 		go c.fibWorker(buffChan, wg)
 	}
@@ -60,8 +61,9 @@ func (c *compute) parallelFibonacci(count int) {
 }
 
 func main() {
+	//Using 4 CPU cores
 	runtime.GOMAXPROCS(4)
-	action := flag.String("action", "s", "p for parallel and s for sequential")
+	action := flag.String("action", "p", "p for parallel and s for sequential")
 	flag.Parse()
 	startTime := time.Now()
 	c := compute{
